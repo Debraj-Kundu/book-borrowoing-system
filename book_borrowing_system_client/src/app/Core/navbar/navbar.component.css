@@ -1,0 +1,11 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.logo {
+  cursor: pointer;
+  margin-right: 48px;
+}
+.navbar {
+  margin-bottom: 40px;
+}
+

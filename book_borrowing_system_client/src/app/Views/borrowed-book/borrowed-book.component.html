@@ -1,0 +1,27 @@
+
+<div *ngFor="let book of borrowedBooks$ | async" class="container mt-3 d-flex justify-content-center">
+    <mat-card class="order-card p-2 mb-4">
+      <mat-card-content class="d-flex flex-row justify-content-between">
+        <img
+          [src]="imageBaseUrl + book.bookImage"
+          height="150"
+          width="150"
+        />
+        <div class="d-flex flex-column">
+          <div>
+            <h2>{{ book.name }}</h2>
+          </div>
+          <div>
+            <h3>{{ book.author }}</h3>
+          </div>
+          <div>
+            <h3>{{ book.genre }}</h3>
+          </div>
+          <div>
+          <button mat-raised-button color="warn" (click)="returnBook(book.id)">Return</button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

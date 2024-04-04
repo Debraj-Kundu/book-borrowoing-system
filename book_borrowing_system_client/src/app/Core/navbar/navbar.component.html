@@ -1,0 +1,101 @@
+<mat-toolbar
+  color="primary"
+  class="mat-elevation-z8 d-flex justify-content-between"
+>
+  <div class="d-flex align-items-center">
+    <div>
+      <button
+        (click)="drawer.toggle()"
+        mat-icon-button
+        class="example-icon d-block d-md-none"
+        aria-label="Example icon-button with menu icon"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div class="ms-md-5 logo" [routerLink]="['/home']">Borrow.it</div>
+    <div class="d-none d-md-block">
+      <ng-container *ngIf="isLoggedIn == true">
+        <button mat-button [routerLink]="['/lent-book']">Lent Books</button>
+        <button mat-button [routerLink]="['/borrowed-book']">Borrowed Books</button>
+        <button mat-button [routerLink]="['/add']">Add Book</button>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="d-none d-md-block">
+    <ng-container *ngIf="isLoggedIn == true">
+      <button mat-button>Hello {{ username }}</button>
+      <button mat-button>Tokens: {{ token }}</button>
+      <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+    </ng-container>
+    <ng-container *ngIf="isLoggedIn == false">
+      <button
+        class="me-2"
+        mat-raised-button
+        color="accent"
+        [routerLink]="['/login']"
+      >
+        SignIn
+      </button>
+      <button
+        class="ms-2 me-md-5"
+        mat-raised-button
+        color="accent"
+        [routerLink]="['/register']"
+      >
+        SignUp
+      </button>
+    </ng-container>
+  </div>
+</mat-toolbar>
+
+<mat-drawer-container autosize>
+  <mat-drawer class="mat-elevation-z8" #drawer mode="side">
+    <mat-nav-list>
+      <ng-container>
+        <mat-list-item>
+          <button mat-button [routerLink]="['/lent-book']">Lent Books</button>
+        </mat-list-item>
+        <mat-list-item>
+          <button mat-button [routerLink]="['/borrowed-book']">Borrowed Books</button>
+        </mat-list-item>
+        <mat-list-item>
+          <button mat-button [routerLink]="['/add']">Add Product</button>
+          
+        </mat-list-item>
+        <mat-list-item>
+          <div class="d-md-block">
+            <ng-container *ngIf="isLoggedIn == true">
+              <button mat-button>Hello {{ username }}</button>
+              <button mat-raised-button color="warn" (click)="logout()">
+                Logout
+              </button>
+            </ng-container>
+            <ng-container *ngIf="isLoggedIn == false">
+              <button
+                mat-raised-button
+                color="accent"
+                [routerLink]="['/login']"
+              >
+                SignIn
+              </button>
+              <button
+                mat-raised-button
+                color="accent"
+                [routerLink]="['/register']"
+              >
+                SignUp
+              </button>
+            </ng-container>
+          </div>
+        </mat-list-item>
+      </ng-container>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div style="text-align: center; min-height: 89vh">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

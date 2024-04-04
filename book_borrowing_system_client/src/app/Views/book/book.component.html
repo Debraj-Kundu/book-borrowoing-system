@@ -1,0 +1,59 @@
+<!-- 
+
+<div class="d-flex justify-content-evenly mt-4">
+  <div class="wrapper">
+    <div class="card radius shadowDepth1">
+      <div class="card__image border-tlr-radius">
+        <img
+          [src]="imageBaseUrl + (book$ | async)?.bookImage"
+          alt="image"
+          class="border-tlr-radius"
+          height="300"
+          width="300"
+        />
+      </div>
+
+      <div class="card__content card__padding">
+        <div class="d-flex">
+          <div>
+            <h1>{{ (book$ | async)?.name }}</h1>
+            <h2>{{(book$ | async)?.author}}</h2>
+            <h2>{{(book$ | async)?.rating}}</h2>
+            <h2>{{(book$ | async)?.genre}}</h2>
+            <h2>{{(book$ | async)?.lentByUser?.username}}</h2>
+            <p>
+              {{ (book$ | async)?.description }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <h1 mat-dialog-title></h1> -->
+<!-- <div mat-dialog-close=""></div> -->
+<div mat-dialog-content class="d-flex justify-content-space-between mt-4">
+  <img
+  [src]="imageBaseUrl + (book$ | async)?.bookImage"
+  alt="image"
+  class="border-tlr-radius"
+  height="300"
+  width="300"
+  />
+  <div class="ms-5 ps-5">
+    <h1><b>{{ (book$ | async)?.name }}</b></h1>
+    <h2>by - <b>{{ (book$ | async)?.author }}</b></h2>
+    <h2>Rating - <b>{{ (book$ | async)?.rating }}</b></h2>
+    <h2>Genre - <b>{{ (book$ | async)?.genre }}</b></h2>
+    <h2>Lent By - <b>{{ (book$ | async)?.lentByUser?.username }}</b></h2>
+    <h3><b>Description</b></h3>
+    <h4>
+      {{ (book$ | async)?.description }}
+    </h4>
+  </div>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-center">
+  <button (click)="closePopUp()" mat-raised-button color="warn">Close</button>
+</div>
+

@@ -1,0 +1,153 @@
+<!-- {{product$ | async | json}} -->
+
+<!-- {{productForm.value | json}} -->
+
+<div class="container p-3 d-flex flex-column d-md-flex justify-content-center">
+  <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+    <mat-card>
+      <mat-card-header class="d-flex justify-content-center">
+        <h2>Add Book</h2>
+      </mat-card-header>
+      <mat-card-content
+        class="d-md-flex flex-column flex-md-row justify-content-center"
+      >
+        <div class="m-4">
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="name"
+                autocomplete="autocomplete_off_randString"
+              />
+              <mat-error *ngIf="productForm.get('name')?.hasError('required')">
+                You must enter a name
+              </mat-error>
+              <mat-error *ngIf="productForm.get('name')?.hasError('maxlength')">
+                Max 100 chracters
+              </mat-error>
+              <mat-error *ngIf="productForm.get('name')?.hasError('pattern')">
+                Only alphanumberic
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Description</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="description"
+                autocomplete="autocomplete_off_randString"
+              />
+              <mat-error
+                *ngIf="productForm.get('description')?.hasError('required')"
+              >
+                You must enter a description
+              </mat-error>
+              <mat-error *ngIf="productForm.get('description')?.hasError('maxlength')">
+                Max 255 chracters
+              </mat-error>
+              <mat-error *ngIf="productForm.get('description')?.hasError('pattern')">
+                Only alphanumberic
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="m-4">
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Rating</mat-label>
+              <input
+                matInput
+                type="number"
+                formControlName="rating"
+                autocomplete="autocomplete_off_randString"
+              />
+              <mat-error *ngIf="productForm.get('rating')?.hasError('required')">
+                You must enter a rating
+              </mat-error>
+              <mat-error *ngIf="productForm.get('rating')?.hasError('max')">
+                Rating can't be more than 5
+              </mat-error>
+              <mat-error *ngIf="productForm.get('rating')?.hasError('min')">
+                Rating can't be less than 1
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Author</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="author"
+                autocomplete="autocomplete_off_randString"
+              />
+              <mat-error
+                *ngIf="productForm.get('author')?.hasError('required')"
+              >
+                You must enter a author
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="m-4">
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Genre</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="genre"
+                autocomplete="autocomplete_off_randString"
+              />
+              <mat-error
+                *ngIf="productForm.get('genre')?.hasError('required')"
+              >
+                You must enter a genre
+              </mat-error>
+            </mat-form-field>
+          </div>
+        <!-- </div>
+        <div class="m-4"> -->
+          <div class="mb-3">
+            <input
+              class="form-control"
+              type="file"
+              accept="image/png, image/jpg"
+              formControlName="image"
+              autocomplete="autocomplete_off_randString"
+              (change)="onChange($event)"
+            />
+            <mat-hint>Required .jpg and .png only</mat-hint>
+          </div>
+        </div>
+      </mat-card-content>
+      <div>
+        <mat-card-footer>
+          <div class="d-md-flex m-2 pb-3 justify-content-evenly">
+            <button
+              [disabled]="productForm.invalid"
+              mat-raised-button
+              color="primary"
+              type="submit"
+            >
+              Add
+            </button>
+            <button
+              [disabled]="productForm.pristine"
+              mat-raised-button
+              color="warn"
+              (click)="clearForm()"
+              type="button"
+            >
+              Clear
+            </button>
+          </div>
+        </mat-card-footer>
+      </div>
+    </mat-card>
+  </form>
+</div>
